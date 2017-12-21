@@ -15,7 +15,7 @@ public class TodoRules {
      */
     public static void updateTodo(Todo oldTodo, Todo newTodo) {
         oldTodo.setTitle(newTodo.getTitle());
-        if (!newTodo.getDescription().isEmpty())
+        if (newTodo.getDescription() != null && !newTodo.getDescription().isEmpty())
             oldTodo.setDescription(newTodo.getDescription());
         oldTodo.setDone(newTodo.getDone());
     }

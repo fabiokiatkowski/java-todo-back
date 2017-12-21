@@ -2,11 +2,13 @@ package com.example.todotest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.util.Date;
@@ -19,10 +21,9 @@ public class Todo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Title should be set.")
     private String title;
     private String description;
-    @AssertTrue(message = "Done should be set.")
     private Boolean done;
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
